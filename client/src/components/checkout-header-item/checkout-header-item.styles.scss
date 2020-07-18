@@ -1,0 +1,11 @@
+.checkout-header-item {
+    text-transform: capitalize;
+    width: 20%;
+
+    &:first-child {
+        width: 27.5%;
+    }
+    &:last-child {
+        width: 10%;
+    }
+}
