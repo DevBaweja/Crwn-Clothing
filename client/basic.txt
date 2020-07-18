@@ -1,0 +1,14 @@
+### Deployment
+heroku apps
+
+heroku git:remote -a <APP_NAME>
+
+git remote
+
+heroku buildpacks
+heroku buildpacks:remove <BUILDPACKS_NAME>
+
+git push heroku master --force
+
+heroku config:set KEY=VALUE
+heroku open
