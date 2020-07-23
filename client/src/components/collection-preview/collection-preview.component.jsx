@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import CollectionItem from '../collection-item/collection-item.component';
@@ -7,7 +8,7 @@ import CollectionItem from '../collection-item/collection-item.component';
 import { selectCartItems } from '../../redux/cart/cart.selector';
 
 import './collection-preview.styles.scss';
-const CollectionPreview = ({ title, items, cartItems }) => {
+const CollectionPreview = ({ title, items, cartItems, history, match }) => {
     const renderCollectionItem = () => {
         const limit = 4;
         return items.slice(0, limit).map(item => {
@@ -17,7 +18,12 @@ const CollectionPreview = ({ title, items, cartItems }) => {
     };
     return (
         <div className="collection-preview">
-            <h1 className="collection-preview__title">{title}</h1>
+            <h1
+                className="collection-preview__title"
+                onClick={() => history.push(`${match.path}/${title.toLowerCase()}`)}
+            >
+                {title}
+            </h1>
             <div className="preview">{renderCollectionItem()}</div>
         </div>
     );
@@ -27,4 +33,4 @@ const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems,
 });
 
-export default connect(mapStateToProps)(CollectionPreview);
+export default withRouter(connect(mapStateToProps)(CollectionPreview));
